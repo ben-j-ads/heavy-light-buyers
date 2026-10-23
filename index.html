@@ -119,6 +119,14 @@
     .lor-dot { fill: var(--ink); }
 
     @media (prefers-color-scheme: dark) { h1 mark, .big span { background: linear-gradient(transparent 4%, var(--lime) 4%, var(--lime) 98%, transparent 98%); } }
+
+    /* polish: aligned inputs, chart label halo, next-step link */
+    .inputs, .adv { align-items: end; }
+    #chart .cap { paint-order: stroke; stroke: var(--paper-raised); stroke-width: 4px; stroke-linejoin: round; }
+    .next-step { border: 1px solid var(--rule); border-left: 4px solid var(--ink); background: var(--paper-raised); padding: 14px 16px; margin: 24px 0 0; }
+    .next-step .k { color: var(--ink-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; }
+    .next-step a { font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; text-transform: lowercase; }
+    .next-step p { margin: 4px 0 0; color: var(--ink-muted); font-size: 0.92rem; }
   </style>
 </head>
 <body>
@@ -137,11 +145,11 @@
       </div>
       <div class="inputs">
         <label class="field">Mean purchases per person, buyers and non-buyers together (m)
-          <input type="number" id="m" min="0.001" max="50" step="0.01" inputmode="decimal"></label>
+          <input autocomplete="off" type="number" id="m" min="0.001" max="50" step="0.01" inputmode="decimal"></label>
         <label class="field">Shape (r). Smaller means more skewed
-          <input type="number" id="r" min="0.05" max="20" step="0.05" inputmode="decimal"></label>
+          <input autocomplete="off" type="number" id="r" min="0.05" max="20" step="0.05" inputmode="decimal"></label>
         <label class="field">Heaviest share of buyers to look at <span class="suffix">%</span>
-          <input type="number" id="f" min="1" max="99" step="1" inputmode="numeric"></label>
+          <input autocomplete="off" type="number" id="f" min="1" max="99" step="1" inputmode="numeric"></label>
       </div>
       <p class="hint">The presets are illustrative shapes, not measured data. Use your own category's mean and shape from panel data. A category buyer is anyone with at least one purchase in the period.</p>
       <div id="err" role="alert"></div>
@@ -196,6 +204,7 @@ P(k+1) = P(k) x (r + k) / (k + 1) x m / (r + m)</div>
       <p><b>It describes the category.</b> One brand's buyers are lighter than the category's buyers, because most of a brand's customers also buy other brands.</p>
     </section>
 
+    <section class="next-step"><div class="k">next</div><a href="https://double-jeopardy-check.benjads.com/">double jeopardy check</a><p>Check whether your loyalty is normal for a brand your size.</p></section>
     <footer class="site-foot">
       <picture><source media="(prefers-color-scheme: dark)" srcset="logo/benjads-footnote-paper-transparent.svg"><img src="logo/benjads-footnote-olive-transparent.svg" alt="ben.j.ads"></picture>
       <p><span class="tag">1</span>Negative binomial distribution of category purchases (Ehrenberg, Sharp). Marketing science, given away free, for people who spend money.</p>
